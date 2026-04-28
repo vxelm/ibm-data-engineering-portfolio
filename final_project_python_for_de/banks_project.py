@@ -40,9 +40,10 @@ def transform(df: pd.DataFrame, csv_path: str) -> pd.DataFrame:
     return df
     
 
-def load_to_csv(df: pd.DataFrame, csv_path: str) -> None:
-    filename = csv_path / "Largest_banks_data.csv"
-    df.to_csv(filename, index=False)
+def load_to_csv(df: pd.DataFrame, path) -> None:
+    filename = "Largest_banks_data.csv"
+    csv_path = path / filename
+    df.to_csv(csv_path, index=False)
     return None
 
 def get_conn():
@@ -69,7 +70,7 @@ def main():
 
     
     csv_name = "exchange_rate.csv"
-    df = transform(df, DATA_DIR /csv_name )
+    df = transform(df, DATA_DIR / csv_name )
     log_process("Data transformation complete. Initiating Loading process")
     
     load_to_csv(df, DATA_DIR)
